@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Botmartz AI Review Portal</title>
+    <script src="https://cdn.jsdelivr.net/npm/qrcodejs/qrcode.min.js"></script>
+    <style>
+        body {
+            font-family: "Poppins", sans-serif;
+            background: linear-gradient(135deg, #e3f2fd, #ffffff);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+            color: #222;
+        }
+
+        h1 {
+            color: #1565c0;
+            margin-bottom: 10px;
+            font-size: 1.6rem;
+        }
+
+        p {
+            font-size: 1rem;
+            margin-bottom: 20px;
+        }
+
+        #reviewBox {
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            max-width: 400px;
+            word-wrap: break-word;
+            margin-bottom: 20px;
+        }
+
+        button {
+            background: #1565c0;
+            color: #fff;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 10px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background: #0d47a1;
+        }
+
+        #qrcode {
+            margin-top: 30px;
+        }
+
+        footer {
+            margin-top: 30px;
+            font-size: 0.85rem;
+            color: #777;
+        }
+
+        @media(max-width:500px) {
+            h1 {
+                font-size: 1.3rem
+            }
+
+            button {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Botmartz AI Google Review Portal</h1>
+    <p>Scan the QR code to generate a unique review message. Click "Copy & Leave Review" to proceed.</p>
+
+    <div id="reviewBox">Generating review message...</div>
+    <button id="copyBtn">Copy & Leave Review ⭐</button>
+
+    <div id="qrcode"></div>
+
+    <footer>© 2026 Botmartz AI | Made with ❤️ by Yash</footer>
+
+    <script>
+        //const GOOGLE_REVIEW_LINK = "https://www.google.com/search?q=Botmartz+AI+reviews";
+        const GOOGLE_REVIEW_LINK = " https://g.page/r/CbivsvhnvmjQEBI/review";
+        const COMPANY_NAME = "Botmartz AI";
+
+        const adjectives = [
+            "innovative",
+            "highly professional",
+            "technically strong",
+            "result-driven",
+            "reliable",
+            "efficient",
+            "forward-thinking",
+            "expert",
+            "strategic",
+            "solution-oriented"
+        ];
+
+        const phrases = [
+            "delivered outstanding AI automation solutions",
+            "built a powerful and scalable web solution",
+            "helped transform our business digitally",
+            "provided excellent software development support",
+            "implemented smart AI & ML systems",
+            "boosted our online presence with digital marketing",
+            "automated our workflow efficiently",
+            "ensured strong cybersecurity implementation",
+            "handled the project smoothly and professionally",
+            "exceeded our expectations in every aspect"
+        ];
+
+        function generateReview() {
+            const adj = adjectives[Math.floor(Math.random() * adjectives.length)];
+            const phr = phrases[Math.floor(Math.random() * phrases.length)];
+
+            const templates = [
+                `${COMPANY_NAME} is a truly ${adj} company that ${phr}. Highly recommended!`,
+                `Had a great experience with ${COMPANY_NAME}. Very ${adj} team that ${phr}.`,
+                `We are extremely satisfied with ${COMPANY_NAME}. They are ${adj} and ${phr}.`,
+                `Such a ${adj} tech partner! ${COMPANY_NAME} ${phr} and delivered great results.`,
+                `${COMPANY_NAME} ${phr}. One of the most ${adj} IT companies we’ve worked with.`
+            ];
+
+            return templates[Math.floor(Math.random() * templates.length)];
+        }
+
+        // Anti-repeat buffer (last 12)
+        const recent = [];
+        function generateUnique() {
+            let attempt = 0;
+            let msg = generateReview();
+            while (recent.includes(msg) && attempt < 10) {
+                msg = generateReview();
+                attempt++;
+            }
+            recent.push(msg);
+            if (recent.length > 12) recent.shift();
+            return msg;
+        }
+
+        let currentMessage = generateUnique();
+        document.getElementById("reviewBox").textContent = currentMessage;
+
+        document.getElementById("copyBtn").addEventListener("click", async () => {
+            try {
+                await navigator.clipboard.writeText(currentMessage);
+            } catch (e) {
+                alert("Clipboard copy failed. Please copy manually.");
+            }
+            window.location.href = GOOGLE_REVIEW_LINK;
+        });
+
+        new QRCode(document.getElementById("qrcode"), {
+            text: window.location.href,
+            width: 150,
+            height: 150
+        });
+    </script>
+
+</body>
+
+</html>
