@@ -96,46 +96,266 @@
         const GOOGLE_REVIEW_LINK = " https://g.page/r/CbivsvhnvmjQEBI/review";
         const COMPANY_NAME = "Botmartz AI";
 
+        //const openers
+        const openers = [
+        "Had an amazing experience with",
+        "Working with",
+        "I recently collaborated with",
+        "Our company partnered with",
+        "We chose",
+        "Extremely impressed by",
+        "Very satisfied with",
+        "Honestly thankful to",
+        "Great experience dealing with",
+        "Highly impressed with",
+        "Fantastic experience with",
+        "Pleasure working with",
+        "Super happy with",
+        "Delighted to work with",
+        "Incredible service from",
+        "Outstanding support from",
+        "Brilliant experience with",
+        "Top-notch service by",
+        "Wonderful experience with",
+        "Completely satisfied with",
+        "Exceptional work from",
+        "Impressed beyond expectations by",
+        "Smooth experience with",
+        "Truly impressed by",
+        "Great collaboration with",
+        "Professional service from",
+        "Reliable support from",
+        "Excellent work delivered by",
+        "Superb experience with",
+        "Truly grateful to",
+        "Appreciate the effort from",
+        "Highly satisfied with",
+        "Very positive experience with",
+        "Amazing support from",
+        "Seamless experience with",
+        "Really enjoyed working with",
+        "Great results from",
+        "Fantastic outcome from",
+        "Outstanding job by",
+        "Professional approach from",
+        "Impressive performance by",
+        "Reliable partner in",
+        "Strong support from",
+        "Exceptional service by",
+        "Very pleased with",
+        "Remarkable experience with",
+        "Truly professional service from",
+        "Great teamwork by",
+        "Fantastic collaboration with",
+        "Absolutely loved working with"
+        ];
+
+        //const adjectives 
         const adjectives = [
-            "innovative",
-            "highly professional",
-            "technically strong",
-            "result-driven",
-            "reliable",
-            "efficient",
-            "forward-thinking",
-            "expert",
-            "strategic",
-            "solution-oriented"
+        "innovative","professional","skilled","efficient","reliable","knowledgeable",
+        "competent","responsive","supportive","creative","dedicated","trustworthy",
+        "capable","proactive","detail-oriented","strategic","talented","organized",
+        "solution-focused","forward-thinking","experienced","dynamic","resourceful",
+        "hardworking","passionate","expert","methodical","systematic","adaptable",
+        "agile","technically strong","highly capable","results-driven","visionary",
+        "dependable","collaborative","smart","quick","responsive","precise",
+        "customer-focused","goal-oriented","efficient","motivated","versatile",
+        "committed","professional-minded","well-prepared","skilled","polished",
+        "analytical","structured","organized","thorough","attentive","disciplined",
+        "innovative-thinking","creative-minded","advanced","competent","brilliant",
+        "outstanding","exceptional","remarkable","impressive","top-class",
+        "world-class","elite","first-rate","high-quality","premium","superior",
+        "accurate","consistent","reliable","stable","robust","efficient",
+        "productive","fast","responsive","cooperative","helpful","friendly",
+        "approachable","transparent","honest","ethical","responsible",
+        "forward-looking","progressive","strategic-minded","tech-savvy",
+        "knowledge-rich","well-trained","qualified","experienced","specialized"
         ];
 
-        const phrases = [
-            "delivered outstanding AI automation solutions",
-            "built a powerful and scalable web solution",
-            "helped transform our business digitally",
-            "provided excellent software development support",
-            "implemented smart AI & ML systems",
-            "boosted our online presence with digital marketing",
-            "automated our workflow efficiently",
-            "ensured strong cybersecurity implementation",
-            "handled the project smoothly and professionally",
-            "exceeded our expectations in every aspect"
+        // const adjectives = [
+        //     "innovative",
+        //     "highly professional",
+        //     "technically strong",
+        //     "result-driven",
+        //     "reliable",
+        //     "efficient",
+        //     "forward-thinking",
+        //     "expert",
+        //     "strategic",
+        //     "solution-oriented"
+        // ];
+
+        //const services
+        const services = [
+        "AI automation","custom software development","web development",
+        "digital marketing","machine learning solutions","business automation",
+        "cybersecurity services","cloud solutions","data analytics",
+        "process optimization","technical consulting","app development",
+        "website design","SEO services","branding solutions",
+        "e-commerce development","system integration","workflow automation",
+        "data management","IT consulting","UI/UX design",
+        "mobile app development","backend development",
+        "frontend development","software maintenance",
+        "AI implementation","chatbot development",
+        "CRM solutions","ERP solutions","SaaS development",
+        "platform development","automation tools",
+        "digital transformation","cloud migration",
+        "infrastructure setup","database management",
+        "performance optimization","API development",
+        "system architecture","IT support services",
+        "network solutions","security implementation",
+        "data engineering","analytics dashboards",
+        "marketing automation","lead generation systems",
+        "conversion optimization","content marketing tools",
+        "business intelligence solutions","custom platforms",
+        "enterprise software","startup tech solutions"
         ];
 
-        function generateReview() {
-            const adj = adjectives[Math.floor(Math.random() * adjectives.length)];
-            const phr = phrases[Math.floor(Math.random() * phrases.length)];
+        //const actions
+        const actions = [
+        "delivered excellent results","transformed our workflow",
+        "helped scale our operations","solved complex challenges",
+        "improved efficiency significantly","boosted our productivity",
+        "built a robust system","created a reliable platform",
+        "handled everything smoothly","provided end-to-end support",
+        "exceeded expectations","completed the project on time",
+        "maintained great communication","offered valuable insights",
+        "made the whole process easy","optimized our processes",
+        "reduced operational costs","improved performance",
+        "streamlined our systems","enhanced our capabilities",
+        "accelerated our growth","simplified complex tasks",
+        "ensured seamless integration","provided innovative solutions",
+        "resolved critical issues","strengthened our infrastructure",
+        "delivered high-quality output","maintained professionalism",
+        "ensured timely delivery","handled requirements perfectly",
+        "offered creative solutions","improved system reliability",
+        "delivered measurable results","helped achieve our goals",
+        "enhanced user experience","improved business outcomes",
+        "provided scalable solutions","maintained high standards"
+        ];
 
-            const templates = [
-                `${COMPANY_NAME} is a truly ${adj} company that ${phr}. Highly recommended!`,
-                `Had a great experience with ${COMPANY_NAME}. Very ${adj} team that ${phr}.`,
-                `We are extremely satisfied with ${COMPANY_NAME}. They are ${adj} and ${phr}.`,
-                `Such a ${adj} tech partner! ${COMPANY_NAME} ${phr} and delivered great results.`,
-                `${COMPANY_NAME} ${phr}. One of the most ${adj} IT companies we’ve worked with.`
-            ];
+        //const connectors
+        const connectors = [
+        "Throughout the project,","In addition,","Moreover,",
+        "What stood out was that","Another great thing is",
+        "I especially appreciated that","On top of that,",
+        "Most importantly,","Also,","Additionally,",
+        "Besides that,","Furthermore,","Not only that,",
+        "Equally important,","Interestingly,",
+        "As a result,","Consequently,",
+        "In particular,","To highlight,",
+        "It’s worth mentioning that",
+        "Above all,","Without a doubt,",
+        "Notably,","Significantly,",
+        "Impressively,","Remarkably,",
+        "From start to finish,",
+        "During the entire process,",
+        "Over the course of the project,"
+        ];
 
-            return templates[Math.floor(Math.random() * templates.length)];
-        }
+        //const qualities
+        const qualities = [
+        "their communication was excellent",
+        "they were always available for support",
+        "the team was very cooperative",
+        "they understood our requirements perfectly",
+        "their expertise was evident",
+        "they handled changes professionally",
+        "the process was very smooth",
+        "they maintained transparency",
+        "the execution was flawless",
+        "they paid attention to details",
+        "they kept us informed regularly",
+        "their approach was structured",
+        "they responded quickly",
+        "they solved issues promptly",
+        "their teamwork was impressive",
+        "they showed great dedication",
+        "their planning was solid",
+        "they were easy to work with",
+        "they maintained professionalism",
+        "their commitment was clear",
+        "they delivered exactly what we needed",
+        "they managed timelines perfectly",
+        "their coordination was excellent",
+        "they provided helpful suggestions",
+        "they ensured quality at every step",
+        "their follow-up was strong",
+        "they understood business needs",
+        "their execution was smooth",
+        "they minimized risks effectively",
+        "they handled pressure well"
+        ];
+
+        //const closing
+        const closings = [
+        "Highly recommended!",
+        "Would definitely work with them again.",
+        "A great technology partner.",
+        "Five stars from our side.",
+        "Truly a dependable company.",
+        "Looking forward to future collaborations.",
+        "Impressive work overall.",
+        "Completely satisfied with the service.",
+        "Great experience overall.",
+        "Absolutely worth it.",
+        "Top-notch service.",
+        "Excellent job done.",
+        "Highly trustworthy team.",
+        "Outstanding performance.",
+        "Great value for money.",
+        "Reliable and professional.",
+        "Exceptional quality delivered.",
+        "Highly professional service.",
+        "Will surely recommend to others.",
+        "A fantastic experience.",
+        "Very happy with the outcome.",
+        "Professional from start to finish.",
+        "Delivered beyond expectations.",
+        "Great support throughout.",
+        "Couldn’t have asked for better.",
+        "One of the best teams we’ve worked with.",
+        "Extremely satisfied.",
+        "Superb execution.",
+        "Highly dependable service.",
+        "Truly impressive work."
+        ];
+
+
+        //const phrases are now not neccessary
+        // const phrases = [
+        //     "delivered outstanding AI automation solutions",
+        //     "built a powerful and scalable web solution",
+        //     "helped transform our business digitally",
+        //     "provided excellent software development support",
+        //     "implemented smart AI & ML systems",
+        //     "boosted our online presence with digital marketing",
+        //     "automated our workflow efficiently",
+        //     "ensured strong cybersecurity implementation",
+        //     "handled the project smoothly and professionally",
+        //     "exceeded our expectations in every aspect"
+        // ];
+
+        function pick(arr) {
+                return arr[Math.floor(Math.random() * arr.length)];
+            }
+
+            function generateReview() {
+
+                let review = `${pick(openers)} ${COMPANY_NAME} for ${pick(services)}. `;
+
+                review += `Their team is ${pick(adjectives)} and ${pick(actions)}. `;
+
+                // Random extra sentence (optional)
+                if (Math.random() > 0.35) {
+                    review += `${pick(connectors)} ${pick(qualities)}. `;
+                }
+
+                review += pick(closings);
+
+                return review;
+            }
+
 
         // Anti-repeat buffer (last 12)
         const recent = [];
